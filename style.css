@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Lilita+One&display=swap');
+
+/* Page transition overlay */
+.page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #2c1e0e;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.page-transition.active {
+    opacity: 1;
+}
+
+/* General Body Styles */
+html, body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #2c1e0e;
+    color: white;
+    text-align: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: background 0.5s, color 0.5s;
+    user-select: none;
+    height: 100%;
+}
+
+/* Back Button */
+.back-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    z-index: 5;
+    text-decoration: none;
+    display: inline-block;
+}
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(-5px);
+}
+.back-button:active {
+    transform: scale(0.95);
+}
+
+/* Search Bar */
+.search-bar {
+    margin: 30px auto;
+    padding: 15px 20px;
+    width: 90%;
+    max-width: 500px;
+    font-size: 18px;
+    border: 2px solid white;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    outline: none;
+    z-index: 5;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.search-bar:focus {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+.search-bar::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Container for game buttons */
+.games-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Game Button Styles with press animations */
+.game-button {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    width: 150px;
+    height: 200px;
+    margin: 10px;
+    border: 2px solid white;
+    font-size: 16px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+/* Ripple effect on click */
+.game-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+.game-button:active::after {
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0) translate(-50%, -50%);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(20, 20) translate(-50%, -50%);
+        opacity: 0;
+    }
+}
+
+.game-button:hover {
+    background: #A0522D;
+    color: black;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #FFD700, 0 0 40px #FFD700;
+}
+
+/* Press animation */
+.game-button:active {
+    transform: scale(0.9);
+    transition: transform 0.1s;
+}
+
+/* Fade-out animation for when button is clicked */
+.game-button.clicked {
+    animation: fadeOutButton 0.5s forwards;
+}
+
+@keyframes fadeOutButton {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+/* Slide-out animation alternative */
+.game-button.slide-out {
+    animation: slideOut 0.5s forwards;
+}
+
+@keyframes slideOut {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+/* Zoom-out animation alternative */
+.game-button.zoom-out {
+    animation: zoomOut 0.5s forwards;
+}
+
+@keyframes zoomOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+.game-button img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    pointer-events: none;
+    transition: transform 0.3s ease;
+}
+
+.game-button:hover img {
+    transform: rotate(5deg) scale(1.1);
+}
+
+.game-button p {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    pointer-events: none;
+}
+
+/* Request Button */
+.request-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    z-index: 5;
+    border: 2px solid white;
+    animation: bounceIn 0.8s ease;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.request-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+}
+
+.request-btn:active {
+    transform: translateY(0);
+}
+
+/* Page title with animation */
+.page-title {
+    font-family: 'Lilita One', cursive;
+    font-size: 48px;
+    margin: 20px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: glowPulse 2s infinite;
+}
+
+@keyframes glowPulse {
+    0% {
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.6);
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+}
