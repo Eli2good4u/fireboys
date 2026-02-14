@@ -21,176 +21,46 @@
 
     <!-- Game Buttons Container -->
     <div class="games-container" id="gamesContainer">
-        <!-- Sample Game Button 1 - Fade out transition -->
-        <a href="https://example.com/game1" class="game-button" data-transition="fade" onclick="handleGameClick(event, this)">
+        <!-- Game 1 - Fade out transition -->
+        <a href="https://google.com/" class="game-button" data-transition="fade" onclick="handleGameClick(event, this)">
             <img src="https://via.placeholder.com/100x100/FFD700/000000?text=Adventure" alt="Adventure Quest">
             <p>Adventure Quest</p>
-            <small style="font-size: 10px; opacity: 0.7;">click me → fade</small>
+            <small style="font-size: 10px; opacity: 0.7;">fade</small>
         </a>
         
-        <!-- Sample Game Button 2 - Slide out transition -->
-        <a href="google.come" class="game-button" data-transition="slide" onclick="handleGameClick(event, this)">
+        <!-- Game 2 - Slide out transition -->
+        <a href="https://example.com/game2" class="game-button" data-transition="slide" onclick="handleGameClick(event, this)">
             <img src="https://via.placeholder.com/100x100/FFA500/000000?text=Racing" alt="Racing Mania">
             <p>Racing Mania</p>
-            <small style="font-size: 10px; opacity: 0.7;">click me → slide</small>
+            <small style="font-size: 10px; opacity: 0.7;">slide</small>
         </a>
         
-        <!-- Sample Game Button 3 - Zoom out transition -->
+        <!-- Game 3 - Zoom out transition -->
         <a href="https://example.com/game3" class="game-button" data-transition="zoom" onclick="handleGameClick(event, this)">
             <img src="https://via.placeholder.com/100x100/FF4500/000000?text=Puzzle" alt="Puzzle World">
             <p>Puzzle World</p>
-            <small style="font-size: 10px; opacity: 0.7;">click me → zoom</small>
+            <small style="font-size: 10px; opacity: 0.7;">zoom</small>
         </a>
         
-        <!-- Sample Game Button 4 - Ripple + fade -->
+        <!-- Game 4 - Ripple + fade -->
         <a href="https://example.com/game4" class="game-button" data-transition="ripple-fade" onclick="handleGameClick(event, this)">
             <img src="https://via.placeholder.com/100x100/8A2BE2/ffffff?text=Space" alt="Space Shooter">
             <p>Space Shooter</p>
-            <small style="font-size: 10px; opacity: 0.7;">click me → ripple+fade</small>
+            <small style="font-size: 10px; opacity: 0.7;">ripple+fade</small>
         </a>
         
-        <!-- Sample Game Button 5 - Explode effect -->
+        <!-- Game 5 - Explode effect -->
         <a href="https://example.com/game5" class="game-button" data-transition="explode" onclick="handleGameClick(event, this)">
             <img src="https://via.placeholder.com/100x100/32CD32/000000?text=Zombie" alt="Zombie Survival">
             <p>Zombie Survival</p>
-            <small style="font-size: 10px; opacity: 0.7;">click me → explode</small>
+            <small style="font-size: 10px; opacity: 0.7;">explode</small>
         </a>
     </div>
 
     <!-- Request Button -->
     <a href="#" class="request-btn" onclick="handleRequestClick(event)">📝 Request a Game</a>
 
-    <script>
-        // Page transition overlay
-        const pageTransition = document.getElementById('pageTransition');
-        
-        // Handle game button clicks with cool transitions
-        function handleGameClick(event, element) {
-            event.preventDefault(); // Prevent immediate navigation
-            
-            const href = element.getAttribute('href');
-            const transition = element.getAttribute('data-transition') || 'fade';
-            
-            // Add transition class based on type
-            switch(transition) {
-                case 'slide':
-                    element.classList.add('slide-out');
-                    break;
-                case 'zoom':
-                    element.classList.add('zoom-out');
-                    break;
-                case 'ripple-fade':
-                    element.classList.add('clicked');
-                    break;
-                case 'explode':
-                    // Explode effect - add multiple classes
-                    element.style.transition = 'all 0.3s ease';
-                    element.style.transform = 'scale(1.5) rotate(45deg)';
-                    element.style.opacity = '0';
-                    break;
-                default:
-                    element.classList.add('clicked');
-            }
-            
-            // Activate page transition overlay after button animation
-            setTimeout(() => {
-                pageTransition.classList.add('active');
-            }, 200);
-            
-            // Navigate to the game page
-            setTimeout(() => {
-                window.location.href = href;
-            }, 500);
-        }
-        
-        // Handle back button click
-        function handleBackClick(event) {
-            event.preventDefault();
-            
-            // Fade out page
-            pageTransition.classList.add('active');
-            
-            // Go back after transition
-            setTimeout(() => {
-                window.history.back();
-            }, 500);
-        }
-        
-        // Handle request button click
-        function handleRequestClick(event) {
-            event.preventDefault();
-            
-            // Create a cool modal or just show animation
-            const btn = event.target;
-            btn.style.transform = 'scale(0.9)';
-            btn.style.opacity = '0.5';
-            
-            setTimeout(() => {
-                btn.style.transform = '';
-                btn.style.opacity = '';
-                alert('Request feature coming soon! 🚀');
-            }, 200);
-        }
-        
-        // Search bar animation
-        const searchBar = document.getElementById('searchBar');
-        const gameButtons = document.querySelectorAll('.game-button');
-        
-        searchBar.addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            
-            gameButtons.forEach(button => {
-                const gameName = button.querySelector('p').textContent.toLowerCase();
-                if (gameName.includes(searchTerm)) {
-                    button.style.opacity = '1';
-                    button.style.transform = 'scale(1)';
-                    button.style.filter = 'blur(0)';
-                } else {
-                    button.style.opacity = '0.3';
-                    button.style.transform = 'scale(0.8)';
-                    button.style.filter = 'blur(2px)';
-                }
-            });
-        });
-        
-        // Add floating animation to buttons on load
-        window.addEventListener('load', () => {
-            gameButtons.forEach((button, index) => {
-                button.style.animation = `float ${3 + index * 0.2}s ease-in-out infinite`;
-            });
-        });
-    </script>
-
-    <style>
-        /* Additional floating animation */
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-        
-        /* Explode animation class */
-        .game-button.explode {
-            animation: explode 0.5s forwards;
-        }
-        
-        @keyframes explode {
-            0% {
-                transform: scale(1) rotate(0deg);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.5) rotate(180deg);
-                opacity: 0.5;
-            }
-            100% {
-                transform: scale(0) rotate(360deg);
-                opacity: 0;
-            }
-        }
-    </style>
+    <!-- Link to external JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>

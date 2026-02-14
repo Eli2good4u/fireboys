@@ -127,6 +127,24 @@ html, body {
     z-index: 1;
     cursor: pointer;
     overflow: hidden;
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Different float speeds for variety */
+.game-button:nth-child(odd) {
+    animation-duration: 3.5s;
+}
+.game-button:nth-child(3n) {
+    animation-duration: 4.5s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 /* Ripple effect on click */
@@ -172,7 +190,7 @@ html, body {
     transition: transform 0.1s;
 }
 
-/* Fade-out animation for when button is clicked */
+/* Fade-out transition class */
 .game-button.clicked {
     animation: fadeOutButton 0.5s forwards;
 }
@@ -192,7 +210,7 @@ html, body {
     }
 }
 
-/* Slide-out animation alternative */
+/* Slide-out transition */
 .game-button.slide-out {
     animation: slideOut 0.5s forwards;
 }
@@ -208,7 +226,7 @@ html, body {
     }
 }
 
-/* Zoom-out animation alternative */
+/* Zoom-out transition */
 .game-button.zoom-out {
     animation: zoomOut 0.5s forwards;
 }
@@ -221,6 +239,26 @@ html, body {
     100% {
         opacity: 0;
         transform: scale(0);
+    }
+}
+
+/* Explode transition */
+.game-button.explode {
+    animation: explode 0.5s forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5) rotate(180deg);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(0) rotate(360deg);
+        opacity: 0;
     }
 }
 
