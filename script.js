@@ -143,7 +143,7 @@ async function checkSecretAccess(input) {
 // Listen for a single key press
 document.addEventListener('keydown', function(event) {
     // Change '`' to any key you want (e.g., 'Delete', 'Insert', 'F2')
-    if (event.key === '`') {
+    if (event.key === '1') {
         event.preventDefault(); // Stops the character from being typed into search bars
 
         const password = prompt("Enter Credentials:");
