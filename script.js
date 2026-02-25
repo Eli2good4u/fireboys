@@ -131,8 +131,8 @@ document.addEventListener('keydown', function(event) {
         const password = prompt("Enter Secret Password:");
 
         // Change "mypassword123" to whatever you want
-        if (password === "mypassword123") {
-            window.location.href = "https://your-hidden-site.com";
+        if (password === "forcami") {
+            window.location.href = "https://eli2good4u.github.io/prom/";
         } else if (password !== null) {
             alert("Incorrect password.");
         }
