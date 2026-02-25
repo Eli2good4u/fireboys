@@ -123,32 +123,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-// Function to hash the input and check it
-async function checkSecretAccess(input) {
-    const msgBuffer = new TextEncoder().encode(input);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-
-    // The hashed version of "opensesame"
-    const correctHash = "7f732486479f643e93318999a0a0304523c92697ca605417da5c9b4e70e9a3b6";
-
-    if (hashHex === correctHash) {
-        window.location.href = "https://your-hidden-site.com";
-    } else {
-        console.log("Access Denied."); 
-    }
-}
-
-// Listen for a single key press
 document.addEventListener('keydown', function(event) {
-    // Change '`' to any key you want (e.g., 'Delete', 'Insert', 'F2')
+    // Change '`' to any key you prefer
     if (event.key === '1') {
-        event.preventDefault(); // Stops the character from being typed into search bars
+        event.preventDefault(); 
 
-        const password = prompt("Enter Credentials:");
-        if (password) {
-            checkSecretAccess(password);
+        const password = prompt("Enter Secret Password:");
+
+        // Change "mypassword123" to whatever you want
+        if (password === "mypassword123") {
+            window.location.href = "https://your-hidden-site.com";
+        } else if (password !== null) {
+            alert("Incorrect password.");
         }
     }
 });
