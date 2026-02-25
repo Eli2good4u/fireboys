@@ -111,9 +111,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
 // Function to hash the input and check it
 async function checkSecretAccess(input) {
-    // Encrypts the input using SHA-256
     const msgBuffer = new TextEncoder().encode(input);
     const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
@@ -123,17 +134,19 @@ async function checkSecretAccess(input) {
     const correctHash = "7f732486479f643e93318999a0a0304523c92697ca605417da5c9b4e70e9a3b6";
 
     if (hashHex === correctHash) {
-        // Redirect to your site (Replace the URL below)
-        window.location.href = "https://eli2good4u.github.io/prom/";
+        window.location.href = "https://your-hidden-site.com";
     } else {
-        console.log("Nothing to see here."); 
+        console.log("Access Denied."); 
     }
 }
 
-// Listen for Shift + H
+// Listen for a single key press
 document.addEventListener('keydown', function(event) {
-    if (event.shiftKey && event.key === 'H') {
-        const password = prompt("Access Restricted:");
+    // Change '`' to any key you want (e.g., 'Delete', 'Insert', 'F2')
+    if (event.key === '`') {
+        event.preventDefault(); // Stops the character from being typed into search bars
+
+        const password = prompt("Enter Credentials:");
         if (password) {
             checkSecretAccess(password);
         }
