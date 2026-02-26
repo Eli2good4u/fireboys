@@ -120,19 +120,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
-
 document.addEventListener('keydown', function(event) {
-    // Change '`' to any key you prefer
     if (event.key === '1') {
         event.preventDefault(); 
 
         const password = prompt("Enter Secret Password:");
 
-        // Change "mypassword123" to whatever you want
         if (password === "forcami") {
-            window.location.href = "https://eli2good4u.github.io/prom/";
+            // 1. Open a new blank tab
+            const newWindow = window.open('about:blank', '_blank');
+
+            if (newWindow) {
+                // 2. Define the site you want to load
+                const url = "https://eli2good4u.github.io/prom/";
+
+                // 3. Inject an iframe that fills the entire blank page
+                newWindow.document.write(`
+                    <title>Classes</title>
+                    <style>
+                        body { margin: 0; padding: 0; overflow: hidden; }
+                        iframe { width: 100vw; height: 100vh; border: none; }
+                    </style>
+                    <iframe src="${url}"></iframe>
+                `);
+                newWindow.document.close();
+            }
         } else if (password !== null) {
             alert("Incorrect password.");
         }
